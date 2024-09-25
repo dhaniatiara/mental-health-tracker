@@ -50,6 +50,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', #Tambahkan tepat di bawah SecurityMiddleware
 ]
 
 ROOT_URLCONF = 'mental_health_tracker.urls'
@@ -127,3 +129,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # new link
 CSRF_TRUSTED_ORIGINS = ["http://localhost","http://127.0.0.1","http://dhania-tiaraputri-mentalhealthtracker.pbp.cs.ui.ac.id", "https://dhania-tiaraputri-mentalhealthtracker.pbp.cs.ui.ac.id"]
+
+STATIC_URL = '/static/'
+if DEBUG:
+    STATICFILES_DIRS = [
+        BASE_DIR / 'static' # merujuk ke /static root project pada mode development
+    ]
+else:
+    STATIC_ROOT = BASE_DIR / 'static' # merujuk ke /static root project pada mode production
